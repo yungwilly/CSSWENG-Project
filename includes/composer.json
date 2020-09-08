@@ -1,0 +1,13 @@
+{
+    "name": "fernan/thesis",
+    "authors": [
+        {
+            "name": "Fernie22",
+            "email": "fernan_paylago@dlsu.edu.ph"
+        }
+    ],
+    "require": {
+        "kreait/firebase-php": "^4.35",
+        "php": ">= 7.2.0"
+    }
+}
