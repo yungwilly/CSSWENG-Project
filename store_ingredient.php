@@ -6,12 +6,16 @@ date_default_timezone_set('Asia/Manila');
 if (isset($_POST['push'])) {
     $ingredientName = $_POST['ingredientName'];
     $ingredientQty = $_POST['ingredientQty'];
+    $ingredientMeasure = $_POST['ingredientMeasure'];
     $ingredientThreshold = $_POST['ingredientThreshold'];
+    $lastEdit = date("Y-m-d");
 
     $data = [
         'ingredientName' => $ingredientName,
         'ingredientQty' => $ingredientQty,
-        'ingredientThreshold' => $ingredientThreshold
+        'ingredientMeasure' => $ingredientMeasure,
+        'ingredientThreshold' => $ingredientThreshold,
+        'lastEdit' => $lastEdit
     ];
     $ref = "ingredients/";
     $pushData = $database->getReference($ref)->push($data);
@@ -21,12 +25,16 @@ if (isset($_POST['push'])) {
 else {
     $ingredientName = $_POST['ingredientName'];
     $ingredientQty = $_POST['ingredientQty'];
+    $ingredientMeasure = $_POST['ingredientMeasure'];
     $ingredientThreshold = $_POST['ingredientThreshold'];
+    $lastEdit = date("Y-m-d");
 
     $data = [
         'ingredientName' => $ingredientName,
         'ingredientQty' => $ingredientQty,
-        'ingredientThreshold' => $ingredientThreshold
+        'ingredientMeasure' => $ingredientMeasure,
+        'ingredientThreshold' => $ingredientThreshold,
+        'lastEdit' => $lastEdit
     ];
     $ref = "ingredients/";
     $pushData = $database->getReference($ref)->set($data);

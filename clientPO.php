@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <html>
 
 <head>
@@ -8,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="InventoryPage.css">
 </head>
@@ -41,7 +45,7 @@
 
     <!-- Modal -->
     <div id="addmodal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -57,7 +61,8 @@
                         </div>
                         <div class="form-group">
                             <label for="clientName">Client Name</label>
-                            <select type="text" name="clientName" class="form-control measure_list">
+                            <select type="text" name="clientName" class="form-control measure_list" onchange="myFunction()">
+                                <option disabled selected value> -- select an option -- </option>
                                 <?php
                                 include("includes/db.php");
                                 $ref = "clients";
@@ -73,13 +78,16 @@
                         <label for="productOrders">Products</label>
                         <table class="table table-bordered" id="dynamic_field">
                             <tr>
-                                <td>Name: <input type="text" name="name[]" class="form-control name_list"></td>
-                                <td>Amount: <input type="number" name="qty[]" class="form-control qty_list"></td>
-                                <td>Measurement: <select type="text" name="measure[]" class="form-control measure_list">
+                                <td>Name: <input type="text" id="name" name="name[]" class="form-control name_list"></td>
+                                <td>Amount: <input type="number" id="qty" name="qty[]" class="form-control qty_list"></td>
+                                <td>Measurement: <select type="text" id="measure" name="measure[]" class="form-control measure_list">
+                                        <option disabled selected value> -- select -- </option>
                                         <option value="pcs">pieces</option>
                                         <option value="cs">cases</option>
                                     </select>
                                 </td>
+                                <td>Unit Price: <input type="number" id="uprice" name="uprice[]" class="form-control qty_list"></td>
+                                <td>Total Price: <input type="number" id="tprice" name="tprice[]" class="form-control qty_list"></td>
                                 <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                             </tr>
                         </table>
@@ -89,8 +97,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="productPrice">Price (in pesos)</label>
-                            <input type="number" class="form-control" name="price">
+                            <label for="productPrice">Overall Price (in pesos)</label>
+                            <input type="number" class="form-control" name="oprice">
                         </div>
                         <div class="form-group">
                             <label for="dateDue">Status</label>
@@ -143,8 +151,8 @@
                     <td>
                         <button type="button" data-toggle="modal" data-target="#viewmodal<?php echo $i; ?>"> View</button>
 
-                        <div id="viewmodal<?php echo $i; ?>" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
+                        <div id="viewmodal<?php echo $i; ?>" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
@@ -216,12 +224,13 @@
         var i = 1;
         $('#add').click(function() {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td>Name: <input type="text" name="name[]" class="form-control name_list"></td><td>Amount: <input type="number" name="qty[]" class="form-control qty_list"></td><td>Measurement: <select type="text" name="measure[]" class="form-control measure_list"><option value="pcs">pieces</option><option vakue="cs">cases</option></select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '"><td>Name: <input type="text" name="name[]" class="form-control name_list"></td><td>Amount: <input type="number" name="qty[]" class="form-control qty_list"></td><td>Measurement: <select type="text" name="measure[]" class="form-control measure_list"><option disabled selected value> -- select -- </option><option value="pcs">pieces</option><option value="cs">cases</option><td>Unit Price: <input type="number" name="uprice[]" class="form-control qty_list"></td><td>Total Price: <input type="number" name="tprice[]" class="form-control qty_list"></td></select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function() {
             var button_id = $(this).attr("id");
             $('#row' + button_id + '').remove();
         });
+
         /*
         $('#submit').click(function() {
             $.ajax({
@@ -236,4 +245,20 @@
         });
         */
     });
+
+    function myFunction() {
+        var x = document.getElementById("mySelect").value;
+        var y = document.getElementById("test").value;
+        <?php
+        include("includes/db.php");
+        $ref = "products";
+        $data = $database->getReference($ref)->getValue();
+        foreach ($data as $key => $data1) {
+        ?>
+
+        <?php
+        }
+        ?>
+
+    }
 </script>

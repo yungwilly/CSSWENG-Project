@@ -1,4 +1,8 @@
+<?php 
+session_start();
+?>
 <html>
+
 <head>
     <title>
         22 PROPACK ASIA CORPORATION
@@ -17,7 +21,7 @@
     </div>
 
     <div>
-    <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
+        <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
         <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
         <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
@@ -94,4 +98,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
