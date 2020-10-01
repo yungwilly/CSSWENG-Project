@@ -26,7 +26,7 @@ if (isset($_POST['push'])) {
     ];
     $ref = "supplyorders/";
     $pushData = $database->getReference($ref)->push($data)->push($data);
-    header("Location:clientPO.php");
+    header("Location:supplierPO.php");
 } else {
     $supplierName = $_POST['supplierName'];
     $supplyNumber = $_POST['supplyNumber'];
