@@ -1,0 +1,194 @@
+  
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #3F3D3B;
+}
+
+#pic
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inventory
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 22.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#calculate
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 32.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#client
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 42.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#financial
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 52.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+#orders
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 62.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#statuses
+{
+  position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 72.5%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#addIngredient
+{
+    width: 150px;
+    height: 36px;
+    left: 75%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+.dropbtn {
+    background: #C4C4C4;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: absolute;
+    display: inline-block;
+    width: 150px;
+      height: 36px;
+      left: 47%;
+      top: 25%;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+
+  .tg  {position: absolute; top: 40%; border-collapse:collapse;border-spacing:0; background: #FFFFFF;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+.tg2  {position: absolute; top: 100%; border-collapse:collapse;border-spacing:0; background: #FFFFFF;}
+.tg2 td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg2 th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg2 .tg2-0lax{text-align:left;vertical-align:top}
