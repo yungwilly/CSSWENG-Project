@@ -678,16 +678,16 @@
         },
         {
             "name": "kreait/firebase-php",
-            "version": "5.8.0",
+            "version": "5.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kreait/firebase-php.git",
-                "reference": "9975417777a1f33f12894380f3e6f8f2a6923050"
+                "reference": "9cb112fedcafe1c25cced005fc9e0c065c397244"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kreait/firebase-php/zipball/9975417777a1f33f12894380f3e6f8f2a6923050",
-                "reference": "9975417777a1f33f12894380f3e6f8f2a6923050",
+                "url": "https://api.github.com/repos/kreait/firebase-php/zipball/9cb112fedcafe1c25cced005fc9e0c065c397244",
+                "reference": "9cb112fedcafe1c25cced005fc9e0c065c397244",
                 "shasum": ""
             },
             "require": {
@@ -755,7 +755,13 @@
                 "google",
                 "sdk"
             ],
-            "time": "2020-08-23T21:34:50+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/jeromegamez",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-04T23:18:15+00:00"
         },
         {
             "name": "kreait/firebase-tokens",
@@ -1465,5 +1471,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
