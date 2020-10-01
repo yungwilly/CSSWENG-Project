@@ -80,12 +80,16 @@ session_start();
                             <input type="text" id="ingredient" class="form-control" name="ingredientName">
                         </div>
                         <div class="form-group">
+                            <label for="productPrice">Quantity</label>
+                            <input type="number" id="oprice" class="form-control" name="qty">
+                        </div>
+                        <div class="form-group">
                             <label for="productPrice">Price (in pesos)</label>
                             <input type="number" id="oprice" class="form-control" name="price">
                         </div>
                         <div class="form-group">
                             <label for="date">Date Due</label>
-                            <input type="date" class="form-control" name="dueDate" disabled>
+                            <input type="date" class="form-control" name="dueDate">
                         </div>
                         <div class="form-group">
                             <label for="dateDue">Status</label>
@@ -114,6 +118,8 @@ session_start();
             <tr>
                 <th>Supply Number</th>
                 <th>Supplier Name</th>
+                <th>Ingredient Name</th>
+                <th>Quantity</th>
                 <th>Date Added</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -131,11 +137,19 @@ session_start();
                 <tr>
                     <td><?php echo $data1['supplyNumber']; ?></td>
                     <td><?php echo $data1['supplierName']; ?></td>
+                    <td><?php echo $data1['ingredientName']; ?></td>
+                    <td><?php echo $data1['qty']; ?></td>
                     <td><?php echo $data1['date']; ?></td>
                     <td><?php echo $data1['status']; ?></td>
                     <td>
                         <button type="button" data-toggle="modal" data-target="#viewmodal<?php echo $i; ?>"> View</button>
-                        <a type="button" class="btn btn-success" href="update_orderstatus.php?key=<?php echo $key; ?>"> Done</a>
+                        <?php
+                        if ($data1['status'] != "Done") {
+                        ?>
+                            <a type="button" class="btn btn-success" href="update_supplyorderstatus.php?key=<?php echo $key; ?>"> Done</a>
+                        <?php
+                        }
+                        ?>
 
                         <div id="viewmodal<?php echo $i; ?>" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
                             <div class="modal-dialog modal-lg">
@@ -147,7 +161,7 @@ session_start();
                                         <h4 class="modal-title">View Orders</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form name="add_name" id="add_name" enctype="multipart/form-data">
+                                        <form name="add_name" id="add_name" action="update_supplyorderstatus.php" method="POST" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="productName">Supply Number</label>
                                                 <input type="text" class="form-control" name="poNumber" value="<?php echo $data1['supplyNumber']; ?>" disabled>
@@ -163,6 +177,10 @@ session_start();
                                             <div class="form-group">
                                                 <label for="ingredientName">Ingredient Ordered</label>
                                                 <input type="text" class="form-control" name="ingredientName" value="<?php echo $data1['ingredientName']; ?>" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="productPrice">Quantity</label>
+                                                <input type="number" id="oprice" class="form-control" name="qty" value="<?php echo $data1['qty']; ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="price">Price (in pesos)</label>
