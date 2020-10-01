@@ -125,7 +125,7 @@ body
     width: 150px;
       height: 36px;
       left: 47%;
-      top: 25%;
+      top: 40%;
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -206,7 +206,7 @@ body
     background: #FFFFFF;
 }
 
-.tg  {position: absolute; top: 40%; border-collapse:collapse;border-spacing:0; background: #FFFFFF;}
+.tg  {position: absolute; top: 50%; border-collapse:collapse;border-spacing:0; background: #FFFFFF;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
