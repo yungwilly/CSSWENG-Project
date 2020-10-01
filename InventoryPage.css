@@ -50,7 +50,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 45%;
+    left: 25%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -67,7 +67,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 65%;
+    left: 45%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -79,6 +79,23 @@ body
     background: #3F3D3B;
 }
 #orders
+{
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    left: 65%;
+    top: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: #3F3D3B;
+}
+
+#statuses
 {
     position: absolute;
     width: 150px;

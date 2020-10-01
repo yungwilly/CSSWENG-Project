@@ -19,19 +19,20 @@
 
   <div>
     <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
-    <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
-    <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
+    <!-- <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a> -->
+    <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Contact Info</a>
     <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
     <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
+    <a type="button" id="statuses" class="btn btn-info" href="Statuses.php">Dashboard</a>
   </div>
 
-  <div class="dropdown">
+  <!-- <div class="dropdown">
         <button class="dropbtn">Dropdown</button>
         <div class="dropdown-content">
             <a href="FinancialReport.php">Sales Report</a>
             <a href="ExpenseReport.php">Expense Report</a>
         </div>
-    </div>
+    </div> -->
 
   <div>
     <a href="FinancialReportPrint.php" target="_blank" class="btn btn-primary"> Print</a>
