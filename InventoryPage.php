@@ -100,7 +100,7 @@ session_start();
                 <th>Quantity</th>
                 <th>Measurement</th>
                 <th>Threshold</th>
-                <th>Last Edited</th>
+                <th>Last Updated</th>
                 <th>Action</th>
             </tr>
         </thead>

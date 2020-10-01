@@ -239,6 +239,7 @@ session_start();
                                                                 } else {
                                                                     $required = $productamount[$prodqtycount] * $amount[$a] / 1000;
                                                                 }
+                                                                
                                                                 array_push($newamount, $hold);
                                                 ?>
                                                                 <?php
