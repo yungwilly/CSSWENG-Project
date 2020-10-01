@@ -41,7 +41,7 @@ session_start();
 
 
 
-    <button type="button" id="addIngredient" data-toggle="modal" data-target="#addmodal">Add Client</button>
+    <button type="button" id="addIngredient" data-toggle="modal" data-target="#addmodal">Add Supplier</button>
 
     <!-- Modal -->
     <div id="addmodal" class="modal fade" role="dialog">
@@ -51,13 +51,13 @@ session_start();
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Client</h4>
+                    <h4 class="modal-title">Add Supplier</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="store_client.php" method="POST" enctype="multipart/form-data">
+                    <form action="store_supplier.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="clientName">Client Name</label>
-                            <input type="text" class="form-control" name="clientName">
+                            <label for="clientName">Supplier Name</label>
+                            <input type="text" class="form-control" name="supplierName">
                         </div>
                         <div class="form-group">
                             <label for="clientAddress">Address</label>
@@ -82,7 +82,7 @@ session_start();
 
         <thead>
             <tr>
-                <th>Client Name</th>
+                <th>Supplier Name</th>
                 <th>Address</th>
                 <th>Contact No.</th>
             </tr>
@@ -90,12 +90,12 @@ session_start();
         <tbody>
             <?php
             include("includes/db.php");
-            $ref = "clients";
+            $ref = "suppliers";
             $data = $database->getReference($ref)->getValue();
             foreach ($data as $key => $data1) {
             ?>
                 <tr>
-                    <td><?php echo $data1['clientName']; ?></td>
+                    <td><?php echo $data1['supplierName']; ?></td>
                     <td><?php echo $data1['address']; ?></td>
                     <td><?php echo $data1['contact']; ?></td>
                 </tr>

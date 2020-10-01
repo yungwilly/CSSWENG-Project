@@ -32,8 +32,8 @@ session_start();
     <div class="dropdown">
         <button class="dropbtn">Dropdown</button>
         <div class="dropdown-content">
-            <a href="inventoryPage.php">Ingredients</a>
-            <a href="productPage.php">Finished Products</a>
+            <a href="clientPO.php">Client PO</a>
+            <a href="supplierPO.php">Supplier PO</a>
         </div>
     </div>
     <br>
@@ -61,7 +61,7 @@ session_start();
                         </div>
                         <div class="form-group">
                             <label for="clientName">Client Name</label>
-                            <select type="text" name="clientName" class="form-control measure_list" onchange="myFunction()">
+                            <select type="text" name="clientName" class="form-control measure_list">
                                 <option disabled selected value> -- select an option -- </option>
                                 <?php
                                 include("includes/db.php");
@@ -105,7 +105,6 @@ session_start();
                             <select type="text" name="status">
                                 <option value="Done">Done</option>
                                 <option value="Ongoing">Ongoing</option>
-                                <option value="Late">Late</option>
                             </select>
                         </div>
                 </div>

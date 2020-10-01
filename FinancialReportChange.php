@@ -28,6 +28,14 @@ session_start();
         <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
     </div>
 
+    <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+            <a href="FinancialReport.php">Sales Report</a>
+            <a href="ExpenseReport.php">Expense Report</a>
+        </div>
+    </div>
+
     <div>
         <a href="FinancialReportPrintChange.php" target="_blank" class="btn btn-primary"> Print</a>
     </div>
@@ -53,12 +61,14 @@ session_start();
     <table class="tg" style="table-layout: fixed; width: 100%;">
         <thead>
             <tr>
-                <th class="tg-0pky">PO No.</th>
-                <th class="tg-0pky">Client Name</th>
-                <th class="tg-0pky">Product</th>
-                <th class="tg-0pky">Measure</th>
-                <th class="tg-0pky">Quantity Sold</th>
-                <th class="tg-0pky">Date</th>
+                <th class="tg-0pky"><b>PO No.</b></th>
+                <th class="tg-0pky"><b>Date</b></th>
+                <th class="tg-0pky"><b>Client Name</b></th>
+                <th class="tg-0pky"><b>Product</b></th>
+                <th class="tg-0pky"><b>Measure</b></th>
+                <th class="tg-0pky"><b>Quantity Sold</b></th>
+                <th class="tg-0pky"><b>Unit Price</b></th>
+                <th class="tg-0pky"><b>Total Price</b></th>
             </tr>
         </thead>
         <tbody>
@@ -71,7 +81,7 @@ session_start();
             foreach ($data as $key => $data1) {
                 $n = 0;
                 foreach ($data1['products'] as $key2 => $data2) {
-                    if ($data1['date'] >= $_SESSION["startDate"]  && $data1['date'] <= $_SESSION["endDate"]) {
+                    if ($data1['status'] == "Done" && $data1['date'] >= $_SESSION["startDate"]  && $data1['date'] <= $_SESSION["endDate"]) {
                         array_push($array, $data1['clientName']);
                         $totalprice += $data1['price'];
             ?>
@@ -118,13 +128,10 @@ session_start();
                                 <td><?php echo $value; ?></td>
                                 <?php
                                 foreach ($data as $key => $data1) {
-                                    foreach ($data1['products'] as $key2 => $data2) {
-                                        if ($value == $data1['clientName'] && $data1['date'] >= $_SESSION["startDate"]  && $data1['date'] <= $_SESSION["endDate"]) {
-                                            $count++;
+                                    if ($value == $data1['clientName'] && $data1['status'] == "Done" && $data1['date'] >= $_SESSION["startDate"]  && $data1['date'] <= $_SESSION["endDate"]) {
+                                        $count++;
                                 ?>
                                 <?php
-                                        }
-                                        $n++;
                                     }
                                 }
                                 ?>

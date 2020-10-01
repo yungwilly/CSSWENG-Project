@@ -25,6 +25,14 @@
     <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
   </div>
 
+  <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+            <a href="FinancialReport.php">Sales Report</a>
+            <a href="ExpenseReport.php">Expense Report</a>
+        </div>
+    </div>
+
   <div>
     <a href="FinancialReportPrint.php" target="_blank" class="btn btn-primary"> Print</a>
   </div>

@@ -101,46 +101,43 @@ $pdf->Cell(189, 10, '', 0, 1); //end of line
 
 $pdf->SetFont('Arial', 'B', 15);
 
-$pdf->MultiCell(192, 7, "Financial Report", 1, 1);
+$pdf->MultiCell(192, 7, "Expense Report", 1, 1);
 
 $pdf->SetFont('Arial', '', 12);
 
 $pdf->SetFont('Arial', 'B', 12);
 
-$pdf->Cell(32, 5, 'PO No.', 1, 0);
-$pdf->Cell(32, 5, 'Client Name', 1, 0);
-$pdf->Cell(60, 5, 'Product Name', 1, 0);
-$pdf->Cell(22, 5, 'Measure', 1, 0);
-$pdf->Cell(14, 5, 'Qty', 1, 0);
-$pdf->Cell(32, 5, 'Date', 1, 1); //end of line
+$pdf->Cell(32, 5, 'Supply No.', 1, 0);
+$pdf->Cell(32, 5, 'Date', 1, 0);
+$pdf->Cell(32, 5, 'Supplier Name', 1, 0);
+$pdf->Cell(28, 5, 'Ingredient', 1, 0);
+$pdf->Cell(36, 5, 'Qty', 1, 0);
+$pdf->Cell(32, 5, 'Price', 1, 1); //end of line
 
 $pdf->SetFont('Arial', '', 12);
 
 //Numbers are right-aligned so we give 'R' after new line parameter
 
 include("includes/db.php");
-$ref = "orders";
+$ref = "supplyorders";
 $data = $database->getReference($ref)->getValue();
 $totalprice = 0;
 $array = array();
 foreach ($data as $key => $data1) {
     $n = 0;
-    array_push($array, $data1['clientName']);
-    foreach ($data1['products'] as $key2 => $data2) {
+    array_push($array, $data1['supplierName']);
         $totalprice += $data1['price'];
 
-        $pdf->Cell(32, 5, $data1['poNumber'], 1, 0);
-        $pdf->Cell(32, 5, $data1['clientName'], 1, 0);
-        $pdf->Cell(60, 5, $data2['name' . $n], 1, 0);
-        $pdf->Cell(22, 5, $data2['measure' . $n], 1, 0);
-        $pdf->Cell(14, 5, $data2['qty' . $n], 1, 0);
-        $pdf->Cell(32, 5, $data1['date'], 1, 1); //end of line
-        $n++;
-    }
+        $pdf->Cell(32, 5, $data1['supplyNumber'], 1, 0);
+        $pdf->Cell(32, 5, $data1['date'], 1, 0);
+        $pdf->Cell(32, 5, $data1['supplierName'], 1, 0);
+        $pdf->Cell(28, 5, $data1['ingredientName'], 1, 0);
+        $pdf->Cell(36, 5, $data1['qty'], 1, 0);
+        $pdf->Cell(32, 5, $data1['price'], 1, 1); //end of line
 }
 
 $pdf->Cell(124, 5, '', 0, 0);
-$pdf->Cell(36, 5, 'Clients', 1, 0);
+$pdf->Cell(36, 5, 'Suppliers', 1, 0);
 $pdf->Cell(32, 5, "Times ordered", 1, 1);
 
 $unique =  array_unique($array);
@@ -150,7 +147,7 @@ foreach ($unique as $value) {
     $pdf->Cell(124, 5, '', 0, 0);
     $pdf->Cell(36, 5, $value, 1, 0);
         foreach ($data as $key => $data1) {
-            if ($value == $data1['clientName']) {
+            if ($value == $data1['supplierName']) {
               $count++;
             }
         }
@@ -158,7 +155,7 @@ foreach ($unique as $value) {
   }
 
 $pdf->Cell(124, 5, '', 0, 0);
-$pdf->Cell(36, 5, 'Total Sales', 1, 0);
+$pdf->Cell(36, 5, 'Total Cost', 1, 0);
 $pdf->Cell(32, 5, 'P ' . $totalprice, 1, 0);
 
 $pdf->Output();

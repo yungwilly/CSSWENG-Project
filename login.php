@@ -13,7 +13,7 @@ if (isset($_POST['userpush'])) {
     foreach ($data as $key => $data1) {
         if($email == $data1["email"] && $passW == $data1["password"]){
             $_SESSION['position'] = "user";
-            header("Location:InventoryPage.php");
+            header("Location:Statuses.php");
         }
         else{
             header("Location:HomePage.php");
@@ -30,7 +30,7 @@ else if (isset($_POST['adminpush'])) {
     foreach ($data as $key => $data1) {
         if($email == $data1["email"] && $passW == $data1["password"]){
             $_SESSION['position'] = "admin";
-            header("Location:InventoryPage.php");
+            header("Location:Statuses.php");
         }
         else{
             header("Location:HomePage.php");
