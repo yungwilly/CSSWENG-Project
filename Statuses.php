@@ -22,6 +22,8 @@
         <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Contact Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
         <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
+        <a type="button" id="logout" class="btn btn-info" href="HomePage.php">Logout</a>
+
     </div>
 
     <table class="tg" style="table-layout: fixed; width: 100%; height: 50%;">
