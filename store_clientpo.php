@@ -7,7 +7,7 @@ if (isset($_POST['push'])) {
     $clientName = $_POST['clientName'];
     $poNumber = $_POST['poNumber'];
     $dateDue = $_POST['dateDue'];
-    $price = $_POST['price'];
+    $price = $_POST['oprice'];
     $status = $_POST['status'];
     $date = date("Y-m-d");
 
@@ -30,11 +30,15 @@ if (isset($_POST['push'])) {
             $name = $_POST['name'][$i];
             $qty = $_POST['qty'][$i];
             $measure = $_POST['measure'][$i];
+            $uprice = $_POST['uprice'][$i];
+            $tprice = $_POST['tprice'][$i];
 
             $data = [
                 'name' . $i => $name,
                 'qty' . $i => $qty,
-                'measure' . $i => $measure
+                'measure' . $i => $measure,
+                'uprice' . $i => $uprice,
+                'tprice' . $i => $tprice
             ];
             $ref = "orders/" . $pushData . "/products";
             $pushData2 = $database->getReference($ref)->push($data);
@@ -45,7 +49,7 @@ if (isset($_POST['push'])) {
     $clientName = $_POST['clientName'];
     $poNumber = $_POST['poNumber'];
     $dateDue = $_POST['dateDue'];
-    $price = $_POST['price'];
+    $price = $_POST['oprice'];
     $status = $_POST['status'];
     $date = date("Y-m-d");
 
@@ -68,11 +72,15 @@ if (isset($_POST['push'])) {
             $name = $_POST['name'][$i];
             $qty = $_POST['qty'][$i];
             $measure = $_POST['measure'][$i];
+            $uprice = $_POST['uprice'][$i];
+            $tprice = $_POST['tprice'][$i];
 
             $data = [
                 'name' . $i => $name,
                 'qty' . $i => $qty,
-                'measure' . $i => $measure
+                'measure' . $i => $measure,
+                'uprice' . $i => $uprice,
+                'tprice' . $i => $tprice
             ];
             $ref = "orders/" . $pushData . "/products";
             $pushData2 = $database->getReference($ref)->push($data);

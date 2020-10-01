@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <html>
@@ -26,7 +26,7 @@ session_start();
         <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
         <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
-        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.html">Financial Report</a>
+        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
     </div>
 
     <div class="dropdown">
@@ -78,16 +78,16 @@ session_start();
                         <label for="productOrders">Products</label>
                         <table class="table table-bordered" id="dynamic_field">
                             <tr>
-                                <td>Name: <input type="text" id="name" name="name[]" class="form-control name_list"></td>
-                                <td>Amount: <input type="number" id="qty" name="qty[]" class="form-control qty_list"></td>
-                                <td>Measurement: <select type="text" id="measure" name="measure[]" class="form-control measure_list">
+                                <td>Name: <input type="text" id="name1" name="name[]" class="form-control name_list"></td>
+                                <td>Unit Price: <input type="number" id="uprice1" name="uprice[]" class="form-control qty_list"></td>
+                                <td>Amount: <input type="number" id="qty1" name="qty[]" class="form-control qty_list"></td>
+                                <td>Measurement: <select type="text" id="measure1" name="measure[]" class="form-control measure_list" onchange="myFunction()">
                                         <option disabled selected value> -- select -- </option>
                                         <option value="pcs">pieces</option>
                                         <option value="cs">cases</option>
                                     </select>
                                 </td>
-                                <td>Unit Price: <input type="number" id="uprice" name="uprice[]" class="form-control qty_list"></td>
-                                <td>Total Price: <input type="number" id="tprice" name="tprice[]" class="form-control qty_list"></td>
+                                <td>Total Price: <input type="number" id="tprice1" name="tprice[]" class="form-control qty_list"></td>
                                 <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                             </tr>
                         </table>
@@ -98,7 +98,7 @@ session_start();
 
                         <div class="form-group">
                             <label for="productPrice">Overall Price (in pesos)</label>
-                            <input type="number" class="form-control" name="oprice">
+                            <input type="number" id="oprice" class="form-control" name="oprice">
                         </div>
                         <div class="form-group">
                             <label for="dateDue">Status</label>
@@ -140,6 +140,9 @@ session_start();
             $data = $database->getReference($ref)->getValue();
             $i = 0;
             foreach ($data as $key => $data1) {
+                $product = array();
+                $productamount = array();
+                $productmeasure = array();
                 $i++;
             ?>
                 <tr>
@@ -150,6 +153,7 @@ session_start();
                     <td><?php echo $data1['status']; ?></td>
                     <td>
                         <button type="button" data-toggle="modal" data-target="#viewmodal<?php echo $i; ?>"> View</button>
+                        <a type="button" class="btn btn-success" href="update_orderstatus.php?key=<?php echo $key; ?>"> Done</a>
 
                         <div id="viewmodal<?php echo $i; ?>" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
                             <div class="modal-dialog modal-lg">
@@ -181,12 +185,16 @@ session_start();
 
                                                 $n = 0;
                                                 foreach ($data1['products'] as $key2 => $data2) {
-
+                                                    array_push($product, $data2['name' . $n]);
+                                                    array_push($productamount, $data2['qty' . $n]);
+                                                    array_push($productmeasure, $data2['measure' . $n]);
                                                 ?>
                                                     <tr>
                                                         <td>Name: <input type="text" name="name[]" class="form-control name_list" value="<?php echo $data2['name' . $n]; ?>"></td>
+                                                        <td>Unit Price: <input type="number" name="uprice[]" class="form-control measure_list" value="<?php echo $data2['uprice' . $n]; ?>">
                                                         <td>Amount: <input type="number" name="qty[]" class="form-control qty_list" value="<?php echo $data2['qty' . $n]; ?>"></td>
                                                         <td>Measurement: <input type="text" name="measure[]" class="form-control measure_list" value="<?php echo $data2['measure' . $n]; ?>">
+                                                        <td>Total Price: <input type="number" name="tprice[]" class="form-control measure_list" value="<?php echo $data2['tprice' . $n]; ?>">
                                                     </tr>
                                                 <?php
                                                     $n++;
@@ -195,6 +203,71 @@ session_start();
 
                                             </table>
 
+                                            <?php
+                                            include("includes/db.php");
+                                            $ref = "products";
+                                            $dat = $database->getReference($ref)->getValue();
+                                            $prodqtycount = 0;
+                                            foreach ($product as $value) {
+                                            ?>
+
+                                                <h4>Product: <?php echo $value; ?></h4>
+                                                <h4>Required ingredients:</h4>
+                                                <?php
+                                                foreach ($dat as $key => $dat1) {
+                                                    $amount = array();
+                                                    $ingredient = array();
+                                                    $n = 0;
+                                                    foreach ($dat1['ingredients'] as $key2 => $dat2) {
+                                                        if ($value == $dat1['productName']) {
+                                                            array_push($amount, $dat2['qty' . $n]);
+                                                            array_push($ingredient, $dat2['name' . $n]);
+                                                        }
+                                                        $n++;
+                                                    }
+                                                    include("includes/db.php");
+                                                    $ref2 = "ingredients";
+                                                    $info = $database->getReference($ref2)->getValue();
+                                                    $a = 0;
+                                                    $newamount = array();
+                                                    foreach ($ingredient as $value2) {
+                                                        foreach ($info as $key3 => $info1) {
+                                                            if ($value2 == $info1['ingredientName']) {
+                                                                $hold =  floor(($info1['ingredientQty'] * 1000) / $amount[$a]);
+                                                                if ($productmeasure[$prodqtycount] == "cs") {
+                                                                    $required = $productamount[$prodqtycount] * 18 * $amount[$a] / 1000;
+                                                                } else {
+                                                                    $required = $productamount[$prodqtycount] * $amount[$a] / 1000;
+                                                                }
+                                                                array_push($newamount, $hold);
+                                                ?>
+                                                                <?php
+                                                                if ($info1['ingredientMeasure'] == "kg") {
+                                                                    echo $value2 . ": (" . $productamount[$prodqtycount] . " * 18) * " . $amount[$a] . "/1000 = " . $required . "kg";
+                                                                ?>
+                                                                    <br>
+                                                                <?php
+                                                                    echo "Current stock: " . $info1['ingredientQty'] . $info1['ingredientMeasure'];
+                                                                } else {
+                                                                    echo $value2 . ": (" . $productamount[$prodqtycount] . " * 18) * " . $amount[$a] . "/1000 = " . $required . "l";
+                                                                ?>
+                                                                    <br>
+                                                                <?php
+                                                                echo "Current stock: " . $info1['ingredientQty'] . $info1['ingredientMeasure'];
+                                                                }
+                                                                ?> 
+                                                                <br>
+
+                                            <?php
+                                                            }
+                                                        }
+                                                        $a++;
+                                                    }
+                                                }
+                                                $prodqtycount++;
+                                            }
+                                            ?>
+                                            <br>
                                             <div class="form-group">
                                                 <label for="totalPrice">Price (in pesos)</label>
                                                 <input type="number" class="form-control" name="totalPrice" value="<?php echo $data1['price']; ?>">
@@ -222,9 +295,11 @@ session_start();
 <script>
     $(document).ready(function() {
         var i = 1;
+        <?php $loop = 1; ?>
         $('#add').click(function() {
+            <?php $loop++; ?>
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td>Name: <input type="text" name="name[]" class="form-control name_list"></td><td>Amount: <input type="number" name="qty[]" class="form-control qty_list"></td><td>Measurement: <select type="text" name="measure[]" class="form-control measure_list"><option disabled selected value> -- select -- </option><option value="pcs">pieces</option><option value="cs">cases</option><td>Unit Price: <input type="number" name="uprice[]" class="form-control qty_list"></td><td>Total Price: <input type="number" name="tprice[]" class="form-control qty_list"></td></select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '"><td>Name: <input type="text" id="name' + i + '" name="name[]" class="form-control name_list"></td><td>Unit Price: <input type="number" id="uprice' + i + '" name="uprice[]" class="form-control qty_list"></td><td>Amount: <input type="number" id="qty' + i + '" name="qty[]" class="form-control qty_list"></td><td>Measurement: <select type="text" id="measure' + i + '" name="measure[]" class="form-control measure_list" onchange="myFunction()"><option disabled selected value> -- select -- </option><option value="pcs">pieces</option><option value="cs">cases</option><td>Total Price: <input type="number" id="tprice' + i + '" name="tprice[]" class="form-control qty_list"></td></select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function() {
             var button_id = $(this).attr("id");
@@ -247,18 +322,20 @@ session_start();
     });
 
     function myFunction() {
-        var x = document.getElementById("mySelect").value;
-        var y = document.getElementById("test").value;
-        <?php
-        include("includes/db.php");
-        $ref = "products";
-        $data = $database->getReference($ref)->getValue();
-        foreach ($data as $key => $data1) {
-        ?>
+        var n = 0;
+        var total = 0;
+        var count = <?php echo $loop; ?>;
+        while (n < 3) {
+            n++;
+            if (document.getElementById("measure" + n).value == "pcs") {
+                document.getElementById("tprice" + n).value = document.getElementById("uprice" + n).value * document.getElementById("qty" + n).value;
+            } else if (document.getElementById("measure" + n).value == "cs") {
+                document.getElementById("tprice" + n).value = document.getElementById("uprice" + n).value * document.getElementById("qty" + n).value * 18;
+            }
+            total = total += parseFloat(document.getElementById("tprice" + n).value);
 
-        <?php
+
         }
-        ?>
-
+        document.getElementById("oprice").value = total;
     }
 </script>

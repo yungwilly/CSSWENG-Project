@@ -5,11 +5,9 @@ date_default_timezone_set('Asia/Manila');
 
 if (isset($_POST['push'])) {
     $productName = $_POST['productName'];
-    $productPrice = $_POST['productPrice'];
 
     $data = [
         'productName' => $productName,
-        'productPrice' => $productPrice
 
     ];
     $ref = "products/";
@@ -35,11 +33,9 @@ if (isset($_POST['push'])) {
     header("Location:productPage.php");
 } else {
     $productName = $_POST['productName'];
-    $productPrice = $_POST['productPrice'];
 
     $data = [
         'productName' => $productName,
-        'productPrice' => $productPrice
 
     ];
     $ref = "products/";

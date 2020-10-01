@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <html>
@@ -22,11 +22,11 @@ session_start();
     </div>
 
     <div>
-    <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
+        <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
         <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
         <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
-        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.html">Financial Report</a>
+        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
     </div>
 
     <div class="dropdown">
@@ -72,11 +72,6 @@ session_start();
                                 <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                             </tr>
                         </table>
-
-                        <div class="form-group">
-                            <label for="productPrice">Price (in pesos)</label>
-                            <input type="number" class="form-control" name="productPrice">
-                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name="push" class="btn btn-primary">Add</button>
@@ -106,6 +101,8 @@ session_start();
             $data = $database->getReference($ref)->getValue();
             $i = 0;
             foreach ($data as $key => $data1) {
+                $amount = array();
+                $ingredient = array();
                 $i++;
             ?>
                 <tr>
@@ -133,33 +130,57 @@ session_start();
                                             <table class="table table-bordered" id="dynamic_field">
 
                                                 <?php
-                                                
+
                                                 $n = 0;
-                                                    foreach ($data1['ingredients'] as $key2 => $data2) {
+                                                foreach ($data1['ingredients'] as $key2 => $data2) {
+                                                    array_push($amount, $data2['qty' . $n]);
+                                                    array_push($ingredient, $data2['name' . $n]);
 
                                                 ?>
-                                                            <tr>
-                                                                <td>Name: <input type="text" name="name[]" class="form-control name_list" value="<?php echo $data2['name' . $n]; ?>"></td>
-                                                                <td>Amount: <input type="number" name="qty[]" class="form-control qty_list" value="<?php echo $data2['qty' . $n]; ?>"></td>
-                                                                <td>Measurement: <input type="text" name="measure[]" class="form-control measure_list" value="<?php echo $data2['measure' . $n]; ?>">
-                                                            </tr>
+                                                    <tr>
+                                                        <td>Name: <input type="text" name="name[]" class="form-control name_list" value="<?php echo $data2['name' . $n]; ?>"></td>
+                                                        <td>Amount: <input type="number" name="qty[]" class="form-control qty_list" value="<?php echo $data2['qty' . $n]; ?>"></td>
+                                                        <td>Measurement: <input type="text" name="measure[]" class="form-control measure_list" value="<?php echo $data2['measure' . $n]; ?>">
+                                                    </tr>
                                                 <?php
                                                     $n++;
-                                                    }
+                                                }
                                                 ?>
 
                                             </table>
-
                                             <div class="form-group">
-                                                <label for="productPrice">Price (in pesos)</label>
-                                                <input type="number" class="form-control" name="productPrice" value="<?php echo $data1['productPrice']; ?>">
+                                                <h4>Formula: (current stocks * 1000) / amount needed</h4>
+                                                <h4>Note: multiplied to 1000 to convert kg and l into g and ml respectively</h4>
+                                            </div>
+
+                                            <?php
+                                            include("includes/db.php");
+                                            $ref = "ingredients";
+                                            $data = $database->getReference($ref)->getValue();
+                                            $a = 0;
+                                            $newamount = array();
+                                            foreach ($ingredient as $value) {
+                                                foreach ($data as $key => $data1) {
+                                                    if ($value == $data1['ingredientName']) {
+                                                        $hold =  floor(($data1['ingredientQty'] * 1000) / $amount[$a]);
+                                                        array_push($newamount, $hold);
+                                                        echo $value . ": (" . $data1['ingredientQty'] . " * 1000) / " . $amount[$a] . " = " . $hold; ?> <br>
+
+                                            <?php
+                                                    }
+                                                }
+                                                $a++;
+                                            }
+                                            ?>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="productPrice">Total Possible Productions</label>
+                                                <input type="number" class="form-control" name="production" value="<?php echo (min($newamount)) ?>">
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" name="push" class="btn btn-primary">Add</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
-                                    </form>
                                 </div>
 
                             </div>

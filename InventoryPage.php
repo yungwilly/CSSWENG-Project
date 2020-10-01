@@ -28,7 +28,7 @@ session_start();
         <?php } ?>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
         <?php if ($_SESSION["position"] == "admin") {  ?>
-        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.html">Financial Report</a>
+            <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
         <?php } ?>
     </div>
 

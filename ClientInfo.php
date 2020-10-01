@@ -25,7 +25,7 @@ session_start();
         <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
         <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
-        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.html">Financial Report</a>
+        <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
     </div>
     <br>
     <br>
