@@ -153,8 +153,13 @@ session_start();
                     <td><?php echo $data1['status']; ?></td>
                     <td>
                         <button type="button" data-toggle="modal" data-target="#viewmodal<?php echo $i; ?>"> View</button>
-                        <a type="button" class="btn btn-success" href="update_orderstatus.php?key=<?php echo $key; ?>"> Done</a>
-
+                        <?php
+                        if ($data1['status'] != "Done") {
+                        ?>
+                            <a type="button" class="btn btn-success" href="update_orderstatus.php?key=<?php echo $key; ?>"> Done</a>
+                        <?php
+                        }
+                        ?>
                         <div id="viewmodal<?php echo $i; ?>" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
                             <div class="modal-dialog modal-lg">
 
@@ -239,7 +244,7 @@ session_start();
                                                                 } else {
                                                                     $required = $productamount[$prodqtycount] * $amount[$a] / 1000;
                                                                 }
-                                                                
+
                                                                 array_push($newamount, $hold);
                                                 ?>
                                                                 <?php
@@ -254,9 +259,9 @@ session_start();
                                                                 ?>
                                                                     <br>
                                                                 <?php
-                                                                echo "Current stock: " . $info1['ingredientQty'] . $info1['ingredientMeasure'];
+                                                                    echo "Current stock: " . $info1['ingredientQty'] . $info1['ingredientMeasure'];
                                                                 }
-                                                                ?> 
+                                                                ?>
                                                                 <br>
 
                                             <?php
