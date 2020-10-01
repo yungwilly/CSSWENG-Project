@@ -16,7 +16,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 22.5%;
+    left: 5%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -33,7 +33,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 32.5%;
+    left: 25%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -50,7 +50,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 42.5%;
+    left: 25%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -67,7 +67,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 52.5%;
+    left: 45%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -83,7 +83,7 @@ body
     position: absolute;
     width: 150px;
     height: 36px;
-    left: 62.5%;
+    left: 65%;
     top: 20%;
     font-style: normal;
     font-weight: normal;
@@ -97,10 +97,10 @@ body
 
 #statuses
 {
-  position: absolute;
+    position: absolute;
     width: 150px;
     height: 36px;
-    left: 72.5%;
+    left: 85%;
     top: 20%;
     font-style: normal;
     font-weight: normal;

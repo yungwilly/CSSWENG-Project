@@ -16,12 +16,12 @@
     </div>
 
     <div>
+        <a type="button" id="statuses" class="btn btn-info" href="Statuses.php">Dashboard</a>
         <a type="button" id="inventory" class="btn btn-info" href="InventoryPage.php">Inventory</a>
-        <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a>
-        <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Client Info</a>
+        <!-- <a type="button" id="calculate" class="btn btn-info" href="CalculatePage.html">Calculate</a> -->
+        <a type="button" id="client" class="btn btn-info" href="ClientInfo.php">Contact Info</a>
         <a type="button" id="orders" class="btn btn-info" href="clientPO.php">Orders</a>
         <a type="button" id="financial" class="btn btn-info" href="FinancialReport.php">Financial Report</a>
-        <a type="button" id="statuses" class="btn btn-info" href="Statuses.php">Dashboard</a>
     </div>
 
     <table class="tg" style="table-layout: fixed; width: 100%; height: 50%;">
@@ -62,42 +62,6 @@
                 }
             }
             ?>
-    </table>
-
-
-    <table class="tg2" style="table-layout: fixed; width: 100%; height: 50%;">
-        <thead>
-            <tr>
-                <th class="tg-0lax">Order ID</th>
-                <th class="tg-0lax">Client</th>
-                <th class="tg-0lax">Order Date</th>
-                <th class="tg-0lax">Order Deadline</th>
-                <th class="tg-0lax">Order Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-                <td class="tg-0lax"></td>
-            </tr>
-        </tbody>
     </table>
 
 </body>
